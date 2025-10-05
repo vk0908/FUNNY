@@ -24,34 +24,74 @@ from AviaxMusic.utils.inline import help_pannel, private_panel, start_panel
 from config import BANNED_USERS
 from strings import get_string
 
+# ───────────────────────────────
+#  Anime / Aesthetic Start Images
+# ───────────────────────────────
 
-@app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
+NEXI_VID = [
+    "https://graph.org/file/f76fd86d1936d45a63c64.jpg",
+    "https://graph.org/file/69ba894371860cd22d92e.jpg",
+    "https://graph.org/file/67fde88d8c3aa8327d363.jpg",
+    "https://graph.org/file/3a400f1f32fc381913061.jpg",
+    "https://graph.org/file/a0893f3a1e6777f6de821.jpg",
+    "https://graph.org/file/5a285fc0124657c7b7a0b.jpg",
+    "https://graph.org/file/a13e9733afdad69720d67.jpg",
+    "https://graph.org/file/52713c9fe9253ae668f13.jpg",
+]
+
+# ───────────────────────────────
+#  /start in Private Chat
+# ───────────────────────────────
+
+@app.on_message(filters.command(["start"]) & filters.private & ~config.BANNED_USERS)
 @LanguageStart
 async def start_pm(client, message: Message, _):
     await add_served_user(message.from_user.id)
+    await message.react("🌚")
+
+    # Typing animation effect
+    typing_message = await message.reply("<b>ᴅɪηɢ..ᴅσηɢ..🥀</b>")
+    typing_text = "<b>𝖲ᴛᴧʀᴛɪηɢ...❤️‍🔥</b>"
+
+    for i in range(1, len(typing_text) + 1):
+        try:
+            await typing_message.edit_text(typing_text[:i])
+            await asyncio.sleep(0.01)
+        except Exception:
+            break
+
+    await asyncio.sleep(1)
+    await typing_message.delete()
+
+    # Handle subcommands
     if len(message.text.split()) > 1:
         name = message.text.split(None, 1)[1]
-        if name[0:4] == "help":
+
+        if name.startswith("help"):
             keyboard = help_pannel(_)
+            await message.reply_sticker("CAACAgIAAxkBAAEBAjVnjyrcOqBOoPgtfLpcN3vlL7h4eAAC5SsAAmMK-UnNyZDgYsxtfjYE")
             return await message.reply_photo(
-                photo=config.START_IMG_URL,
+                random.choice(NEXI_VID),
                 caption=_["help_1"].format(config.SUPPORT_GROUP),
                 protect_content=True,
                 reply_markup=keyboard,
             )
-        if name[0:3] == "sud":
+
+        if name.startswith("sud"):
             await sudoers_list(client=client, message=message, _=_)
             if await is_on_off(2):
-                return await app.send_message(
+                await app.send_message(
                     chat_id=config.LOG_GROUP_ID,
-                    text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>sᴜᴅᴏʟɪsᴛ</b>.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
+                    text=f"{message.from_user.mention} ᴊᴜsᴛ checked <b>sᴜᴅᴏʟɪsᴛ</b>.\n\n"
+                         f"<b>User ID:</b> <code>{message.from_user.id}</code>\n"
+                         f"<b>Username:</b> @{message.from_user.username}",
                 )
             return
-        if name[0:3] == "inf":
-            m = await message.reply_text("🔎")
-            query = (str(name)).replace("info_", "", 1)
-            query = f"https://www.youtube.com/watch?v={query}"
-            results = VideosSearch(query, limit=1)
+
+        if name.startswith("inf"):
+            m = await message.reply_text("🔎 Searching...")
+            query = name.replace("info_", "", 1)
+            results = VideosSearch(f"https://www.youtube.com/watch?v={query}", limit=1)
             for result in (await results.next())["result"]:
                 title = result["title"]
                 duration = result["duration"]
@@ -61,6 +101,7 @@ async def start_pm(client, message: Message, _):
                 channel = result["channel"]["name"]
                 link = result["link"]
                 published = result["publishedTime"]
+
             searched_text = _["start_6"].format(
                 title, duration, views, published, channellink, channel, app.mention
             )
@@ -80,37 +121,52 @@ async def start_pm(client, message: Message, _):
                 reply_markup=key,
             )
             if await is_on_off(2):
-                return await app.send_message(
+                await app.send_message(
                     chat_id=config.LOG_GROUP_ID,
-                    text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>ᴛʀᴀᴄᴋ ɪɴғᴏʀᴍᴀᴛɪᴏɴ</b>.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
+                    text=f"{message.from_user.mention} viewed <b>track info</b>.\n\n"
+                         f"<b>User ID:</b> <code>{message.from_user.id}</code>\n"
+                         f"<b>Username:</b> @{message.from_user.username}",
                 )
-    else:
-        out = private_panel(_)
-        UP, CPU, RAM, DISK = await bot_sys_stats()
-        await message.reply_photo(
-            photo=config.START_IMG_URL,
-            caption=_["start_2"].format(message.from_user.mention, app.mention, UP, DISK, CPU, RAM),
-            reply_markup=InlineKeyboardMarkup(out),
+            return
+
+    # Normal /start message (no args)
+    out = private_panel(_)
+    UP, CPU, RAM, DISK = await bot_sys_stats()
+
+    await message.reply_sticker("CAACAgIAAxkBAAEBAjVnjyrcOqBOoPgtfLpcN3vlL7h4eAAC5SsAAmMK-UnNyZDgYsxtfjYE")
+    await message.reply_photo(
+        random.choice(NEXI_VID),
+        caption=_["start_2"].format(message.from_user.mention, app.mention, UP, DISK, CPU, RAM),
+        reply_markup=InlineKeyboardMarkup(out),
+    )
+
+    if await is_on_off(2):
+        await app.send_message(
+            chat_id=config.LOG_GROUP_ID,
+            text=f"{message.from_user.mention} started the bot.\n\n"
+                 f"<b>User ID:</b> <code>{message.from_user.id}</code>\n"
+                 f"<b>Username:</b> @{message.from_user.username}",
         )
-        if await is_on_off(2):
-            return await app.send_message(
-                chat_id=config.LOG_GROUP_ID,
-                text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
-            )
 
+# ───────────────────────────────
+#  /start in Group Chat
+# ───────────────────────────────
 
-@app.on_message(filters.command(["start"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["start"]) & filters.group & ~config.BANNED_USERS)
 @LanguageStart
 async def start_gp(client, message: Message, _):
     out = start_panel(_)
-    uptime = int(time.time() - _boot_)
+    uptime = int(time.time() - config._boot_)
     await message.reply_photo(
-        photo=config.START_IMG_URL,
+        random.choice(NEXI_VID),
         caption=_["start_1"].format(app.mention, get_readable_time(uptime)),
         reply_markup=InlineKeyboardMarkup(out),
     )
     return await add_served_chat(message.chat.id)
 
+# ───────────────────────────────
+#  New Member Welcome
+# ───────────────────────────────
 
 @app.on_message(filters.new_chat_members, group=-1)
 async def welcome(client, message: Message):
@@ -124,7 +180,7 @@ async def welcome(client, message: Message):
                 except:
                     pass
             if member.id == app.id:
-                if message.chat.type != ChatType.SUPERGROUP:
+                if message.chat.type != "supergroup":
                     await message.reply_text(_["start_4"])
                     return await app.leave_chat(message.chat.id)
                 if message.chat.id in await blacklisted_chats():
@@ -140,7 +196,7 @@ async def welcome(client, message: Message):
 
                 out = start_panel(_)
                 await message.reply_photo(
-                    photo=config.START_IMG_URL,
+                    random.choice(NEXI_VID),
                     caption=_["start_3"].format(
                         message.from_user.first_name,
                         app.mention,
@@ -153,3 +209,5 @@ async def welcome(client, message: Message):
                 await message.stop_propagation()
         except Exception as ex:
             print(ex)
+            
+
