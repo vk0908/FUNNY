@@ -514,30 +514,42 @@ class YouTubeAPI:
             x.download([link])
 
         def song_audio_dl():
-            cookie_file = cookie_txt_file()
-            if not cookie_file:
-                raise Exception("No cookies found. Cannot download song audio.")
-                
-            fpath = f"downloads/{title}.%(ext)s"
+            cookies_file = "cookies.txt"  # adjust path if needed
+            outtmpl = "downloads/%(id)s.%(ext)s"
             ydl_optssx = {
-                "format": format_id,
-                "outtmpl": fpath,
+                "format": "bestaudio[ext=m4a]/bestaudio/best",
+                "outtmpl": outtmpl,
                 "geo_bypass": True,
                 "nocheckcertificate": True,
                 "quiet": True,
                 "no_warnings": True,
-                "cookiefile" : cookie_file,
                 "prefer_ffmpeg": True,
+                "cookiefile": cookies_file,
                 "postprocessors": [
                     {
                         "key": "FFmpegExtractAudio",
                         "preferredcodec": "mp3",
-                        "preferredquality": "192",
-                    }
+                        "preferredquality": "320",
+                        "postprocessor_args": [
+                    "-af",
+                    (
+                        "loudnorm=I=-14:TP=-1.5:LRA=11,"
+                        "acompressor=threshold=-20dB:ratio=2.5:attack=200:release=1000,"
+                        "equalizer=f=3500:t=q:w=2:g=3,"
+                        "bass=g=6:f=90:w=0.3,"
+                        "highpass=f=40,lowpass=f=16000"
+                    ),
                 ],
             }
+        ],
+            }
             x = yt_dlp.YoutubeDL(ydl_optssx)
+            info = x.extract_info(link, False)
+            xyz = os.path.join("downloads", f"{info['id']}.{info['ext']}")
+            if os.path.exists(xyz):
+                return xyz
             x.download([link])
+            return xyz
 
         if songvideo:
             await download_song(link)
@@ -596,3 +608,4 @@ class YouTubeAPI:
             direct = True
             downloaded_file = await download_song(link)
         return downloaded_file, direct
+
