@@ -127,12 +127,12 @@ async def gen_thumb(videoid: str) -> str:
     # --- Top Text (Glowing Signature) ---
     glow_text = Image.new("RGBA", darkened.size, (0,0,0,0))
     g = ImageDraw.Draw(glow_text)
-    g.text((40, 25), "Dev: @LifeOfSimon", font=regular_font, fill=(255,255,255))
-    g.text((1020, 25), "IG: @rubesh_official_18", font=regular_font, fill=(255,255,255))
+    g.text((40, 25), "Dev: @SunsetOfMe", font=regular_font, fill=(255,255,255))
+    g.text((1020, 25), "IG: @daily_grief", font=regular_font, fill=(255,255,255))
     glow_text = glow_text.filter(ImageFilter.GaussianBlur(3))
     darkened = Image.alpha_composite(darkened, glow_text)
-    draw.text((40, 25), "Dev: @LifeOfSimon", font=regular_font, fill="#FFC0CB")
-    draw.text((1020, 25), "IG: @rubesh_official_18", font=regular_font, fill="#FFC0CB")
+    draw.text((40, 25), "Dev: @SunsetOfMe", font=regular_font, fill="#FFC0CB")
+    draw.text((1020, 25), "IG: @daily_grief", font=regular_font, fill="#FFC0CB")
 
     # --- Cleanup ---
     try:
@@ -142,3 +142,4 @@ async def gen_thumb(videoid: str) -> str:
 
     darkened.save(cache_path)
     return cache_path
+
