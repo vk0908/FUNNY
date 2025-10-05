@@ -141,7 +141,7 @@ async def stream(
         current_queue = db.get(chat_id)
 
         
-        if current_queue is not None and len(current_queue) >= 10:
+        if current_queue is not None and len(current_queue) >= 10000:
             return await app.send_message(original_chat_id, "You can't add more than 10 songs to the queue.")
 
         try:
@@ -426,3 +426,4 @@ async def stream(
             db[chat_id][0]["mystic"] = run
             db[chat_id][0]["markup"] = "tg"
             await mystic.delete()
+
