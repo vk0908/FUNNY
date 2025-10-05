@@ -1,4 +1,10 @@
+#  Copyright (c) 2025 Aviax
+#  Licensed under the GNU AGPL v3.0: https://www.gnu.org/licenses/agpl-3.0.html
+#  Start handler for AviaxMusic Bot
+
 import time
+import asyncio
+import random
 
 from pyrogram import filters
 from pyrogram.enums import ChatType
@@ -24,6 +30,7 @@ from AviaxMusic.utils.inline import help_pannel, private_panel, start_panel
 from config import BANNED_USERS
 from strings import get_string
 
+
 # ───────────────────────────────
 #  Anime / Aesthetic Start Images
 # ───────────────────────────────
@@ -38,6 +45,7 @@ NEXI_VID = [
     "https://graph.org/file/a13e9733afdad69720d67.jpg",
     "https://graph.org/file/52713c9fe9253ae668f13.jpg",
 ]
+
 
 # ───────────────────────────────
 #  /start in Private Chat
@@ -91,8 +99,8 @@ async def start_pm(client, message: Message, _):
         if name.startswith("inf"):
             m = await message.reply_text("🔎 Searching...")
             query = name.replace("info_", "", 1)
-            results = VideosSearch(f"https://www.youtube.com/watch?v={query}", limit=1)
-            for result in (await results.next())["result"]:
+            results = await VideosSearch(f"https://www.youtube.com/watch?v={query}", limit=1).next()
+            for result in results["result"]:
                 title = result["title"]
                 duration = result["duration"]
                 views = result["viewCount"]["short"]
@@ -148,6 +156,7 @@ async def start_pm(client, message: Message, _):
                  f"<b>Username:</b> @{message.from_user.username}",
         )
 
+
 # ───────────────────────────────
 #  /start in Group Chat
 # ───────────────────────────────
@@ -164,6 +173,7 @@ async def start_gp(client, message: Message, _):
     )
     return await add_served_chat(message.chat.id)
 
+
 # ───────────────────────────────
 #  New Member Welcome
 # ───────────────────────────────
@@ -174,15 +184,18 @@ async def welcome(client, message: Message):
         try:
             language = await get_lang(message.chat.id)
             _ = get_string(language)
+
             if await is_banned_user(member.id):
                 try:
                     await message.chat.ban_member(member.id)
                 except:
                     pass
+
             if member.id == app.id:
-                if message.chat.type != "supergroup":
+                if message.chat.type != ChatType.SUPERGROUP:
                     await message.reply_text(_["start_4"])
                     return await app.leave_chat(message.chat.id)
+
                 if message.chat.id in await blacklisted_chats():
                     await message.reply_text(
                         _["start_5"].format(
@@ -209,5 +222,3 @@ async def welcome(client, message: Message):
                 await message.stop_propagation()
         except Exception as ex:
             print(ex)
-            
-
