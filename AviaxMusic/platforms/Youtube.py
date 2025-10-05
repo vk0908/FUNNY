@@ -513,7 +513,7 @@ class YouTubeAPI:
             x = yt_dlp.YoutubeDL(ydl_optssx)
             x.download([link])
 
-        def song_audio_dl():
+        def song_audio_dl(link: str):
             cookies_file = "cookies.txt"  # adjust path if needed
             outtmpl = "downloads/%(id)s.%(ext)s"
             ydl_optssx = {
@@ -531,7 +531,7 @@ class YouTubeAPI:
                         "preferredcodec": "mp3",
                         "preferredquality": "320",
                         "postprocessor_args": [
-                    "-af",
+                            "-af",
                     (
                         "loudnorm=I=-14:TP=-1.5:LRA=11,"
                         "acompressor=threshold=-20dB:ratio=2.5:attack=200:release=1000,"
@@ -608,4 +608,5 @@ class YouTubeAPI:
             direct = True
             downloaded_file = await download_song(link)
         return downloaded_file, direct
+
 
