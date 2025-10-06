@@ -19,7 +19,6 @@ class Aviax(Client):
             api_hash=config.API_HASH,
             bot_token=config.BOT_TOKEN,
             in_memory=True,
-            parse_mode=ParseMode.HTML,
             max_concurrent_transmissions=7,
         )
 
@@ -56,3 +55,4 @@ class Aviax(Client):
 
     async def stop(self):
         await super().stop()
+
