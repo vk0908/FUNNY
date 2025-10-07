@@ -638,27 +638,43 @@ class YouTubeAPI:
             x = yt_dlp.YoutubeDL(ydl_optssx)
             x.download([link])
 
-        def song_audio_dl():
-            fpath = f"downloads/{title}.%(ext)s"
+        def song_audio_dl(link: str):
+            cookies_file = "cookies.txt"  # adjust path if needed
+            outtmpl = "downloads/%(id)s.%(ext)s"
             ydl_optssx = {
-                "format": format_id,
-                "outtmpl": fpath,
+                "format": "bestaudio[ext=m4a]/bestaudio/best",
+                "outtmpl": outtmpl,
                 "geo_bypass": True,
                 "nocheckcertificate": True,
                 "quiet": True,
                 "no_warnings": True,
-                "cookiefile" : cookie_txt_file(),
                 "prefer_ffmpeg": True,
+                "cookiefile": cookies_file,
                 "postprocessors": [
                     {
                         "key": "FFmpegExtractAudio",
                         "preferredcodec": "mp3",
-                        "preferredquality": "192",
-                    }
+                        "preferredquality": "320",
+                        "postprocessor_args": [
+                            "-af",
+                    (
+                        "loudnorm=I=-14:TP=-1.5:LRA=11,"
+                        "acompressor=threshold=-20dB:ratio=2.5:attack=200:release=1000,"
+                        "equalizer=f=3500:t=q:w=2:g=3,"
+                        "bass=g=6:f=90:w=0.3,"
+                        "highpass=f=40,lowpass=f=16000"
+                    ),
                 ],
             }
+        ],
+            }
             x = yt_dlp.YoutubeDL(ydl_optssx)
+            info = x.extract_info(link, False)
+            xyz = os.path.join("downloads", f"{info['id']}.{info['ext']}")
+            if os.path.exists(xyz):
+                return xyz
             x.download([link])
+            return xyz
 
         if songvideo:
             await loop.run_in_executor(None, song_video_dl)
@@ -676,4 +692,5 @@ class YouTubeAPI:
             downloaded_file = await audio_dl(vid_id)
         
         return downloaded_file, direct
+
 
