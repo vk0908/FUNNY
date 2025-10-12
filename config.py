@@ -22,11 +22,11 @@ DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 6000))
 LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", None))
 
 # Get this value from @MissRose_Bot on Telegram by /id
-OWNER_ID = int(getenv("OWNER_ID", '7813285237'))
+OWNER_ID = int(getenv("OWNER_ID", '7049074888'))
 
 ## Fill these variables if you're deploying on heroku.
 # Your heroku app name
-HEROKU_APP_NAME = getenv("nezukomusicbot0")
+HEROKU_APP_NAME = getenv("ZyllaMusicBot04")
 # Get it from http://dashboard.heroku.com/account
 HEROKU_API_KEY = getenv("HRKU-AA0SHc_NIO_ffb12cR6XCBBfVvPBStRayf5fSdvo4tJQ_____wWd49jm5G7E")
 
@@ -37,14 +37,14 @@ YT_API_KEY = getenv("YT_API_KEY" , 'xbit_VBCP0UEKNWPIV4B09OLASJ') ## Your API ke
 
 UPSTREAM_REPO = getenv(
     "UPSTREAM_REPO",
-    "https://github.com/demonlord2002/NewNiz",
+    "https://github.com/demonlord2002/Doremon",
 )
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "master")
 GIT_TOKEN = getenv(
     "GIT_TOKEN", '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'
 )  # Fill this variable if your upstream repository is private
 
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/Nezuko_chan_0")
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/TeamFallenAngels")
 SUPPORT_GROUP = getenv("SUPPORT_GROUP", "https://t.me/Team_Fallen_Angels")
 
 # Set this to True if you want the assistant to automatically leave chats after an interval
@@ -123,6 +123,7 @@ if SUPPORT_GROUP:
         raise SystemExit(
             "[ERROR] - Your SUPPORT_GROUP url is wrong. Please ensure that it starts with https://"
         )
+
 
 
 
