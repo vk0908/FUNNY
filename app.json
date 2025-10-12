@@ -30,7 +30,7 @@
 
         "description": "Get this value from https://my.telegram.org",
 
-        "value": "27758016",
+        "value": "20576146",
 
         "required": true
 
@@ -40,7 +40,7 @@
 
         "description": "Get this value from https://my.telegram.org",
 
-        "value": "8d34cfffe27ab461eabbf0091b1a27df",
+        "value": "8238728608:AAEvYcArv-PvPc6hrdYoRMMn9BE_mTPJMLA",
 
         "required": true
 
@@ -70,7 +70,7 @@
 
         "description": "The user id of user whom you would like to add as OWNER.",
 
-        "value": "7813285237",
+        "value": "7049074888",
 
         "required": true
 
@@ -80,7 +80,7 @@
 
         "description": "A Pyrogram v2 String Session from Replit.",
 
-        "value": "BQF1s6cAKtGcrhuJz2ChTk-qRO4p50RnGJ1Uy46yrfRfMfxYFZjeM_TppSjMS3EOGDkKqZgel99JX3FuC6HkCi_p1ItahXgsIhSo3MC15X1l7hgHfw7GjbFbbjo3eSB8ZN2RMJlprFv74ZtCsDvUUX1fB5LPsVBhB7jcHeFYNbBYAGU7tQ67lQ6haB-KtbYO7fpLks1cFXMyZcHE_mKCm9ONaIw0XKqyGIuE8Hb4GQGZBMuOIrxpLeDisuOX6eDFjxGK1sxE0MH2AqZjlEOMfaBTM9ianaSd3wiJaN4gB0c6zBPhakX1bPt4-HPK--lN8OgI7WZRMv5WDCpjtM-goI2glhle3gAAAAHhR5_ZAA",
+        "value": "BQF1s6cAKocnzz1cNUnVsBp56zZJPEAjFh3tjA7fqMo_rTBB0DoqKvV6NZdqXP-h9lK6JGYvhaNAluYjuIVW_3XTSZulAJAWGlX4MfXUzoxk8LiR-IiywHXLtJtr9H-jceMbR1-TPYoNnm_WvK0QAFPKDsP57kpxgbXWWKN0AI2bc0f78gcPMxKzuJ9tveYHXN6N93LU_FlJhU2PpJ4taBoJkLqr9lN9IZOkcvCzkdk1cjg8rbkkr77Vr2arPue5ArarPTHNYWT1q5btDwXkFS8oIVKrZsqWTYRj9x8O6GG1CEKb8qgxkHkARMsMahpH8hQZCurWNb3uR9-7oJC8fVTkDB3tTAAAAAH2eli2AA",
 
         "required": true
 
