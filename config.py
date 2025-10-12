@@ -41,7 +41,7 @@ UPSTREAM_REPO = getenv(
 )
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "master")
 GIT_TOKEN = getenv(
-    "GIT_TOKEN", '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'
+    "GIT_TOKEN", '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'
 )  # Fill this variable if your upstream repository is private
 
 SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/TeamFallenAngels")
@@ -123,6 +123,7 @@ if SUPPORT_GROUP:
         raise SystemExit(
             "[ERROR] - Your SUPPORT_GROUP url is wrong. Please ensure that it starts with https://"
         )
+
 
 
 
