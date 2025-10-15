@@ -26,9 +26,9 @@ OWNER_ID = int(getenv("OWNER_ID", '7049074888'))
 
 ## Fill these variables if you're deploying on heroku.
 # Your heroku app name
-HEROKU_APP_NAME = getenv("zyllamusicbot0")
+HEROKU_APP_NAME = getenv("")
 # Get it from http://dashboard.heroku.com/account
-HEROKU_API_KEY = getenv("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")
+HEROKU_API_KEY = getenv("")
 
 # Vars For API End Pont.
 YTPROXY_URL = getenv("YTPROXY_URL", 'https://tgapi.xbitcode.com') ## xBit Music Endpoint.
@@ -123,6 +123,7 @@ if SUPPORT_GROUP:
         raise SystemExit(
             "[ERROR] - Your SUPPORT_GROUP url is wrong. Please ensure that it starts with https://"
         )
+
 
 
 
