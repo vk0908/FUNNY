@@ -177,8 +177,8 @@ async def gen_thumb(videoid: str) -> str:
         sig_font = ImageFont.truetype("AviaxMusic/assets/font.ttf", 22)
     except OSError:
         sig_font = regular_font
-    draw.text((40, 25), "Dev: @SunsetOfMe", font=sig_font, fill="#FFEB3B")
-    draw.text((1020, 25), "IG: @daily_grief", font=sig_font, fill="#FFEB3B")
+    draw.text((40, 25), "Dev: @Rubesh_official_18", font=sig_font, fill="#FFEB3B")
+    draw.text((1020, 25), "IG: @rubesh_official_18", font=sig_font, fill="#FFEB3B")
 
     # --- Cleanup ---
     try:
@@ -188,3 +188,4 @@ async def gen_thumb(videoid: str) -> str:
 
     dark_bg.save(cache_path, quality=95)
     return cache_path
+
