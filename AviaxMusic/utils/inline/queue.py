@@ -1,5 +1,4 @@
 from typing import Union
-
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 
@@ -11,19 +10,62 @@ def queue_markup(
     played: Union[bool, int] = None,
     dur: Union[bool, int] = None,
 ):
+    # When duration is unknown
     not_dur = [
+        [
+            InlineKeyboardButton(
+                text="▷",
+                callback_data=f"ADMIN Resume|{CPLAY}",
+            ),
+            InlineKeyboardButton(
+                text="II",
+                callback_data=f"ADMIN Pause|{CPLAY}",
+            ),
+            InlineKeyboardButton(
+                text="↻",
+                callback_data=f"ADMIN Replay|{CPLAY}",
+            ),
+            InlineKeyboardButton(
+                text="‣‣I",
+                callback_data=f"ADMIN Skip|{CPLAY}",
+            ),
+            InlineKeyboardButton(
+                text="▢",
+                callback_data=f"ADMIN Stop|{CPLAY}",
+            ),
+        ],
         [
             InlineKeyboardButton(
                 text=_["QU_B_1"],
                 callback_data=f"GetQueued {CPLAY}|{videoid}",
             ),
-            InlineKeyboardButton(
-                text=_["CLOSE_BUTTON"],
-                callback_data="close",
-            ),
-        ]
+        ],
     ]
-    dur = [
+
+    # When duration is known
+    dur_markup = [
+        [
+            InlineKeyboardButton(
+                text="▷",
+                callback_data=f"ADMIN Resume|{CPLAY}",
+            ),
+            InlineKeyboardButton(
+                text="II",
+                callback_data=f"ADMIN Pause|{CPLAY}",
+            ),
+            InlineKeyboardButton(
+                text="↻",
+                callback_data=f"ADMIN Replay|{CPLAY}",
+            ),
+            InlineKeyboardButton(
+                text="‣‣I",
+                callback_data=f"ADMIN Skip|{CPLAY}",
+            ),
+            InlineKeyboardButton(
+                text="▢",
+                callback_data=f"ADMIN Stop|{CPLAY}",
+            ),
+        ],
         [
             InlineKeyboardButton(
                 text=_["QU_B_2"].format(played, dur),
@@ -35,13 +77,10 @@ def queue_markup(
                 text=_["QU_B_1"],
                 callback_data=f"GetQueued {CPLAY}|{videoid}",
             ),
-            InlineKeyboardButton(
-                text=_["CLOSE_BUTTON"],
-                callback_data="close",
-            ),
         ],
     ]
-    upl = InlineKeyboardMarkup(not_dur if DURATION == "Unknown" else dur)
+
+    upl = InlineKeyboardMarkup(not_dur if DURATION == "Unknown" else dur_markup)
     return upl
 
 
@@ -50,12 +89,12 @@ def queue_back_markup(_, CPLAY):
         [
             [
                 InlineKeyboardButton(
-                    text=_["BACK_BUTTON"],
+                    text="◁ Back",
                     callback_data=f"queue_back_timer {CPLAY}",
                 ),
                 InlineKeyboardButton(
-                    text=_["CLOSE_BUTTON"],
-                    callback_data="close",
+                    text="▷ Resume",
+                    callback_data=f"ADMIN Resume|{CPLAY}",
                 ),
             ]
         ]
@@ -66,10 +105,11 @@ def queue_back_markup(_, CPLAY):
 def aq_markup(_, chat_id):
     buttons = [
         [
-            InlineKeyboardButton(
-                    text=_["CLOSE_BUTTON"],
-                    callback_data="close",
-            ),
-        ],
+            InlineKeyboardButton(text="▷", callback_data=f"ADMIN Resume|{chat_id}"),
+            InlineKeyboardButton(text="II", callback_data=f"ADMIN Pause|{chat_id}"),
+            InlineKeyboardButton(text="↻", callback_data=f"ADMIN Replay|{chat_id}"),
+            InlineKeyboardButton(text="‣‣I", callback_data=f"ADMIN Skip|{chat_id}"),
+            InlineKeyboardButton(text="▢", callback_data=f"ADMIN Stop|{chat_id}"),
+        ]
     ]
     return buttons
