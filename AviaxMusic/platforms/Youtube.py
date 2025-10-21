@@ -547,7 +547,7 @@ class YouTubeAPI:
                     logger.error(f"API Error: {songData.get('message', 'Unknown error from API.')}")
                     return None
                 else:
-                    logger.error("Could not fetch Backend \nPlease contact API provider."
+                    logger.error("Could not fetch Backend \nPlease contact API provider.")
                     return None
                     
              except requests.exceptions.RequestException as e:
@@ -676,3 +676,4 @@ class YouTubeAPI:
             downloaded_file = await audio_dl(vid_id)
         
         return downloaded_file, direct
+
