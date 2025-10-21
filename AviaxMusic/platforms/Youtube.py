@@ -549,8 +549,8 @@ class YouTubeAPI:
                 else:
                     logger.error("Could not fetch Backend \nPlease contact API provider.")
                     return None
-                    
-             except requests.exceptions.RequestException as e:
+
+            except requests.exceptions.RequestException as e:
                 logger.error(f"Network error while fetching audio info: {str(e)}")
             except json.JSONDecodeError as e:
                 logger.error(f"Invalid response from proxy: {str(e)}")
@@ -676,4 +676,4 @@ class YouTubeAPI:
             downloaded_file = await audio_dl(vid_id)
         
         return downloaded_file, direct
-
+            
