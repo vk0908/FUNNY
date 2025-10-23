@@ -128,7 +128,7 @@ async def get_thumb(videoid: str):
         draw.text((text_x, title_y), short_title, (255, 255, 255), font=title_font)
 
         info_text = f"{short_channel} • {views}"
-        info_font = ImageFont.truetype("ShrutixMusic/assets/font2.ttf", 22)
+        info_font = ImageFont.truetype("AviaxMusic/assets/font2.ttf", 22)
         draw.text((text_x, info_y), info_text, (200, 200, 200), font=info_font)
 
         time_font = ImageFont.truetype("AviaxMusic/assets/font2.ttf", 26)
@@ -168,3 +168,4 @@ async def get_thumb(videoid: str):
         print(f"[get_thumb Error] {e}")
         traceback.print_exc()
         return None 
+
