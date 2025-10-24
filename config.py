@@ -30,9 +30,10 @@ HEROKU_APP_NAME = getenv("")
 # Get it from http://dashboard.heroku.com/account
 HEROKU_API_KEY = getenv("")
 
-# Vars For API End Pont.
-YTPROXY_URL = getenv("YTPROXY_URL", 'https://tgapi.xbitcode.com') ## xBit Music Endpoint.
-YT_API_KEY = getenv("YT_API_KEY" , 'xbit_VBCP0UEKNWPIV4B09OLASJ') ## Your API key like: xbit_10000000xx0233 Get from  https://t.me/tgmusic_apibot
+API_URL = getenv("API_URL", 'https://teaminflex.xyz') #youtube song url
+VIDEO_API_URL = getenv("VIDEO_API_URL", 'https://teaminflex.xyz')
+API_KEY = getenv("API_KEY", 'INFLEX51570228D') # youtube song api key, generate free key or buy paid plan from panel.thequickearn.xyz
+
 
 
 UPSTREAM_REPO = getenv(
@@ -123,6 +124,7 @@ if SUPPORT_GROUP:
         raise SystemExit(
             "[ERROR] - Your SUPPORT_GROUP url is wrong. Please ensure that it starts with https://"
         )
+
 
 
 
