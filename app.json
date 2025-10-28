@@ -70,7 +70,7 @@
 
         "description": "The user id of user whom you would like to add as OWNER.",
 
-        "value": "7049074888",
+        "value": "7931898805",
 
         "required": true
 
@@ -80,7 +80,7 @@
 
         "description": "A Pyrogram v2 String Session from Replit.",
 
-        "value": "BQF1s6cAKocnzz1cNUnVsBp56zZJPEAjFh3tjA7fqMo_rTBB0DoqKvV6NZdqXP-h9lK6JGYvhaNAluYjuIVW_3XTSZulAJAWGlX4MfXUzoxk8LiR-IiywHXLtJtr9H-jceMbR1-TPYoNnm_WvK0QAFPKDsP57kpxgbXWWKN0AI2bc0f78gcPMxKzuJ9tveYHXN6N93LU_FlJhU2PpJ4taBoJkLqr9lN9IZOkcvCzkdk1cjg8rbkkr77Vr2arPue5ArarPTHNYWT1q5btDwXkFS8oIVKrZsqWTYRj9x8O6GG1CEKb8qgxkHkARMsMahpH8hQZCurWNb3uR9-7oJC8fVTkDB3tTAAAAAH2eli2AA",
+        "value": "BQF1s6cACUGAM_lwjgSCNvz3SHIMqxsyAzE7eoH3gbVhuGRZeT-fvCoUixqAhaxVXecw_OvpdKI8CjUjkQYSPzducqIIJBQfiTD9anE-8Xge0LjszXzvjk3Zzi8TWCRTP0aGV-yUuzqWeO8RRVBLSpapmiik07AWxHeUCPANCzWXGAFXdFqaMTsCoijwf-BkMOZQvzbZX_kSKXmSequcbmWHqGCyC-BnbMnEvxeopw96WOahB5G3Nm46gDwcEocbp2Sfs7SacS4lbYUvwckiAJOp1Svl4GxVCo2nL2c-UOIpk0tTBIzc0RyRuC1uR2wRkFCKlWdsxz_7nrpAAzEA4XrnKnTMkQAAAAE8ivCSAA",
 
         "required": true
 
