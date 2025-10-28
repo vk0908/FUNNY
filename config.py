@@ -22,7 +22,7 @@ DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 6000))
 LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", None))
 
 # Get this value from @MissRose_Bot on Telegram by /id
-OWNER_ID = int(getenv("OWNER_ID", '7049074888'))
+OWNER_ID = int(getenv("OWNER_ID", '7931898805'))
 
 ## Fill these variables if you're deploying on heroku.
 # Your heroku app name
@@ -32,21 +32,21 @@ HEROKU_API_KEY = getenv("")
 
 API_URL = getenv("API_URL", 'https://teaminflex.xyz') #youtube song url
 VIDEO_API_URL = getenv("VIDEO_API_URL", 'https://teaminflex.xyz')
-API_KEY = getenv("API_KEY", 'INFLEX51570228D') # youtube song api key, generate free key or buy paid plan from panel.thequickearn.xyz
+API_KEY = getenv("API_KEY", 'INFLEX64189128D') # youtube song api key, generate free key or buy paid plan from panel.thequickearn.xyz
 
 
 
 UPSTREAM_REPO = getenv(
     "UPSTREAM_REPO",
-    "https://github.com/vk0908/New",
+    "https://github.com/vk0908/FUNNY",
 )
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "master")
 GIT_TOKEN = getenv(
     "GIT_TOKEN", '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'
 )  # Fill this variable if your upstream repository is private
 
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/TeamFallenAngels")
-SUPPORT_GROUP = getenv("SUPPORT_GROUP", "https://t.me/Team_Fallen_Angels")
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/+q3_Up1gCN5g3OTll")
+SUPPORT_GROUP = getenv("SUPPORT_GROUP", "https://t.me/tamillan_chat")
 
 # Set this to True if you want the assistant to automatically leave chats after an interval
 AUTO_LEAVING_ASSISTANT = bool(getenv("AUTO_LEAVING_ASSISTANT", False))
@@ -124,6 +124,7 @@ if SUPPORT_GROUP:
         raise SystemExit(
             "[ERROR] - Your SUPPORT_GROUP url is wrong. Please ensure that it starts with https://"
         )
+
 
 
 
